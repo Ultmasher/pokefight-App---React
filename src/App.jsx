@@ -1,19 +1,43 @@
-import { Routes, Route } from "react-router-dom";
-import header from "../components/Header";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
+import Layout from "../components/Layout";
+import Error from "../components/Error";
 import Home from "../views/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {PokemonDetail , SearchResults } from "../views";
+import Pokemon from "../views/Pokemon";
+import PokemonId from "../views/PokemonId";
+import { loader as allPokemonLoader } from "../views/Pokemon";
+import './App.css'
+
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route path="/" element = {<Layout />}>
+    <Route
+      index
+      element = {<Home />}
+      errorElement = {<Error />}
+    />
+    <Route
+      path ="/pokemon"
+      element = {<Pokemon />}
+      loader={allPokemonLoader}
+      errorElement = {<Error />}
+    />
+    <Route
+      path = "/pokemon/:id"
+      element = {<PokemonId />}
+      errorElement = {<Error />}  
+    />
+  </Route>
+));
+
 
 function App() {
-    return (
-      <>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/pokemon/:id" element={<PokemonDetail />} />
-            <Route path="/search/:name" element={<SearchResults />} />
-          </Routes>
-        </BrowserRouter>
-      </>
-    );
-  }
+  return (
+    <RouterProvider router={router} />
+  )
+}
+
+export default App

@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { fetchPokemonData } from "../api/index.js";
+import { fetchPokemonData } from "../api/api.jsx";
 
 export async function loader() {
   const data = await fetchPokemonData();

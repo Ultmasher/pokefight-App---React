@@ -1,43 +1,24 @@
 import {
-  createBrowserRouter,
-  RouterProvider,
-  createRoutesFromElements,
+  BrowserRouter,
   Route,
+  Routes,
 } from "react-router-dom";
-import Layout from "../components/Layout";
-import Error from "../components/Error";
 import Home from "../views/Home";
 import Pokemon from "../views/Pokemon";
 import PokemonId from "../views/PokemonId";
-import { loader as allPokemonLoader } from "../views/Pokemon";
-import './App.css'
-
-const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element = {<Layout />}>
-    <Route
-      index
-      element = {<Home />}
-      errorElement = {<Error />}
-    />
-    <Route
-      path ="/pokemon"
-      element = {<Pokemon />}
-      loader={allPokemonLoader}
-      errorElement = {<Error />}
-    />
-    <Route
-      path = "/pokemon/:id"
-      element = {<PokemonId />}
-      errorElement = {<Error />}  
-    />
-  </Route>
-));
+//import { loader as allPokemonLoader } from "../views/Pokemon";
+import './App.css';
 
 
 function App() {
   return (
-    <RouterProvider router={router} />
-  )
+  <BrowserRouter>
+  <Routes>
+    <Route exact path="/" component={Home} />
+    <Route path="/pokemon" component={Pokemon} />
+    <Route path="/pokemon/:id" component={PokemonId} />
+  </Routes>
+  </BrowserRouter>);
 }
 
-export default App
+export default App;

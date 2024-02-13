@@ -1,4 +1,4 @@
-export const fetchPokemonData = async () => {
+export const fetchPokemons = async () => {
     try {
         const response = await fetch("https://pokefight-cy50.onrender.com/api/pokemon");
       console.log(response);

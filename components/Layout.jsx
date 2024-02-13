@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Header from "../styling/header.css";
+//import Header from "../components/Header.jsx";
 import '../styling/header.css';
 
 const Layout = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>
         <Outlet />  
       </main> 

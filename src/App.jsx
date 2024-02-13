@@ -7,8 +7,8 @@ import { createRoutesFromElements } from "react-router-dom";
 import Home from "../views/Home";
 import Pokemon from "../views/Pokemon";
 import PokemonId from "../views/PokemonId";
-import Layout from "./components/Layout";
-import Error from "./components/Error";
+import Layout from "../components/Layout";
+import Error from "../components/Error";
 import './App.css';
 
 const router = createBrowserRouter(createRoutesFromElements(

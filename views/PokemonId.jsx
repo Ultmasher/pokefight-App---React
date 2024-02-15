@@ -1,25 +1,37 @@
 import { useState, useEffect } from 'react';
+//import { useParams } from 'react-router-dom'; 
+import { fetchPokemon } from '../api/api.jsx';
+import { useNavigate, useParams } from "react-router-dom";
 
-import { useParams } from 'react-router-dom'; 
-import { fetchPokemons } from '../api/api.jsx';  
 
 const PokemonId = () => {
-  const { id } = useParams(); 
-  const [pokemon, setPokemon] = useState(null); 
-  useEffect(() => {
-    fetchPokemons(id).then((data) => {   
-      setPokemon(data); 
-      console.log('your results are: ' + data);
-    });
-  }, [id]); 
+  const navigate = useNavigate();
+  const [selectedPokemonId, setSelectedPokemonId] = useState([]);
+  const { id } = useParams();
 
-  if(!pokemon) {
-    return <div><img src='./loading.gif' alt='Loading...'/></div>
+  const fetchPokemon = async (id) => {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  try {
+    setSelectedPokemonId(response.data);
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
   }
-
-  return (
-    <div>PokemonId</div>
-  )
+};
+useEffect(() => {
+  fetchPokemon(id);
+}, []);
+  
+    return (
+    <div>
+      <h1>Pokemon</h1>
+      <h2>{selectedPokemonId.name}</h2>
+      <img src={selectedPokemonId.sprites.front_default} alt={selectedPokemonId.name} />
+      <p>Height: {selectedPokemonId.height}</p>
+      <p>Weight: {selectedPokemonId.weight}</p>
+      <button onClick={() => navigate('/pokemon')}>Back</button>
+    </div>
+    );
 }
 
 export default PokemonId

@@ -1,16 +1,17 @@
+import Header from './Header'; // adjust the path if necessary
+import Footer from './Footer'; // adjust the path if necessary
 import { Outlet } from "react-router-dom";
-//import Header from "../components/Header.jsx";
-import '../styling/header.css';
 
 const Layout = () => {
-  return (
-    <>
-      {/* <Header /> */}
-      <main>
-        <Outlet />  
-      </main> 
-    </>
-  )
-}
-
-export default Layout;
+    return (
+      <>
+        <Header />
+        <main>
+          <Outlet />  
+        </main> 
+        <Footer />
+      </>
+    )
+  }
+  
+  export default Layout

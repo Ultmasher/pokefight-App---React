@@ -5,7 +5,7 @@ import { fetchPokemons } from '../api/api.jsx'
 
 
 
-const Pokemons = () => {
+const Pokemon = () => {
   const [pokemons, setPokemons] = useState([])
   const [loading, setLoading] = useState(true);
   //const navigate = useNavigate()
@@ -31,4 +31,4 @@ const Pokemons = () => {
   )
 }
 
-export default Pokemons
+export default Pokemon;

@@ -1,37 +1,35 @@
 import { useState, useEffect } from 'react';
-//import { useParams } from 'react-router-dom'; 
-import { fetchPokemon } from '../api/api.jsx';
 import { useNavigate, useParams } from "react-router-dom";
-
+import { fetchPokemon } from '../api/api.jsx';
 
 const PokemonId = () => {
-  const navigate = useNavigate();
-  const [selectedPokemonId, setSelectedPokemonId] = useState([]);
   const { id } = useParams();
-
-  const fetchPokemon = async (id) => {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  try {
-    setSelectedPokemonId(response.data);
-    console.log(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
-useEffect(() => {
-  fetchPokemon(id);
-}, []);
+  const [pokemon, setPokemon] = useState({})
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
   
-    return (
+
+  useEffect(() => {
+    fetchPokemon(id).then((data) => {
+      setPokemon(data)
+      setLoading(false);
+    })
+  }, [id])
+
+  return (
     <div>
-      <h1>Pokemon</h1>
-      <h2>{selectedPokemonId.name}</h2>
-      <img src={selectedPokemonId.sprites.front_default} alt={selectedPokemonId.name} />
-      <p>Height: {selectedPokemonId.height}</p>
-      <p>Weight: {selectedPokemonId.weight}</p>
-      <button onClick={() => navigate('/pokemon')}>Back</button>
+      <button onClick={() => navigate(-1)}>Back</button>
+      {loading ? <p>Loading...</p> : (
+        <div>
+          <h1>{pokemon.name}</h1>
+          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+          <p>Height: {pokemon.height}</p>
+          <p>Weight: {pokemon.weight}</p>
+          <p>Types: {pokemon.types.map((type) => type.type.name).join(', ')}</p>
+        </div>
+      )}
     </div>
-    );
+  )
 }
 
 export default PokemonId

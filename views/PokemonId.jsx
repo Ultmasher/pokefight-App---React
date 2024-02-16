@@ -18,16 +18,17 @@ const PokemonId = () => {
 
   return (
     <div>
-      {/* <button onClick={() => navigate(-1)}>Back</button>
+      <button onClick={() => navigate(-1)}>Back</button>
       {loading ? <p>Loading...</p> : (
-        <div>
-          <h1>{pokemon.name}</h1>
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+        <div> 
+          <h1>{pokemon.name.english}</h1>
+          <img src={pokemon.image} alt={pokemon.name.english} />
+          {/* <img src={pokemon.sprites.front_default} alt={pokemon.name} />
           <p>Height: {pokemon.height}</p>
           <p>Weight: {pokemon.weight}</p>
-          <p>Types: {pokemon.types.map((type) => type.type.name).join(', ')}</p>
+          <p>Types: {pokemon.types.map((type) => type.type.name).join(', ')}</p> */}
         </div>
-      )} */}
+      )}
     </div>
   )
 }

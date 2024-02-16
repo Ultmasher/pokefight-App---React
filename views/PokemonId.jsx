@@ -18,7 +18,7 @@ const PokemonId = () => {
 
   return (
     <div>
-      <button onClick={() => navigate(-1)}>Back</button>
+      {/* <button onClick={() => navigate(-1)}>Back</button>
       {loading ? <p>Loading...</p> : (
         <div>
           <h1>{pokemon.name}</h1>
@@ -27,7 +27,7 @@ const PokemonId = () => {
           <p>Weight: {pokemon.weight}</p>
           <p>Types: {pokemon.types.map((type) => type.type.name).join(', ')}</p>
         </div>
-      )}
+      )} */}
     </div>
   )
 }
